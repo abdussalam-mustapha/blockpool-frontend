@@ -15,7 +15,7 @@ export const featuresData = [
         id: 2,
         ftImg: Fee_comparison,
         ftText: "Fee Comparison",
-        ftDesc: "Compare Solana with other block...",
+        ftDesc: "Compare Solana with other blo...",
     },
     {
         id: 3,
