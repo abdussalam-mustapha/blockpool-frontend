@@ -1,0 +1,136 @@
+.nav_wrapper {
+    max-width: 82rem;
+    background: #000;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0.5rem;
+    height: 5.1875rem;
+    padding: 0 4rem;
+}
+
+.nav_items {
+    max-width: 27.625rem;
+    display: flex;
+    gap: 4.625rem;
+}
+
+.nav_items button {
+    color: #FFFFFF;
+    background: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav_icon img {
+    width: 6rem;
+    height: 5rem;
+}
+
+button {
+    border: none;
+}
+
+.get_started_btn {
+    background: linear-gradient(180deg, #14F195 0%, #0C8B56 100%);
+    padding: 1rem 0.5rem;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #FFFFFF;
+    line-height: 100%;
+    border-radius: 0.25rem;
+}
+
+span {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.mobile_menu {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    position: absolute;
+    right: 1rem;
+    top: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .nav_items {
+        display: none;
+    }
+
+    .mobile_menu {
+        display: block;
+    }
+
+    .nav_icon {
+        right: 3rem;
+        position: relative;
+    }
+
+    .mobile_nav_items {
+        display: flex;
+        flex-direction: column;
+        background: rgba(77, 77, 77, 0.9);
+        position: fixed;
+        top: 0.5rem;
+        left: 0;
+        width: 50%;
+        height: 100%;
+        padding: 2rem;
+        transition: transform 0.3s ease;
+        transform: translateX(-100%);
+        z-index: 1000;
+    }
+
+    .mobile_nav_items.open {
+        transform: translateX(0);
+    }
+
+    .get_started_btn_mobile {
+        background: linear-gradient(180deg, #14F195 0%, #0C8B56 100%);
+        padding: 1rem 0.5rem;
+        font-weight: 500;
+        font-size: 0.8rem;
+        color: #FFFFFF;
+        line-height: 100%;
+        border-radius: 0.25rem;
+    }
+
+    .mobile_btn {
+        margin: 1rem 0;
+        background: none;
+        padding: 1rem 0.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 500;
+        font-size: 0.8rem;
+        color: #FFFFFF;
+        line-height: 100%;
+        border-radius: 0.25rem;
+        border: none;
+        transition: background 0.3s ease;
+    }
+
+    .mobile_nav_items button:hover {
+        background: linear-gradient(180deg, #0C8B56 0%, #14F195 100%);
+    }
+    .mobile_nav_items button:active {
+        background: linear-gradient(180deg, #0C8B56 0%, #14F195 100%);
+    }
+    .mobile_nav_items button:focus {
+        background: linear-gradient(180deg, #0C8B56 0%, #14F195 100%);
+    }
+
+    .get_started_btn {
+        display: none;
+    }
+
+  
+}

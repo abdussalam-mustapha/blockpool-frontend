@@ -1,0 +1,81 @@
+.ft_section {
+    color: #ffffff;
+    margin-top: 6rem;
+}
+
+.ft_header_wrapper {
+    display: flex;
+    justify-content: center;
+    max-width: 65rem;
+}
+
+h2 {
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 3rem;
+}
+
+.ft_header_wrapper p {
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 100%;
+    letter-spacing: 4%;
+}
+
+.ft_header_wrapper button {
+    border: 1px solid #14F195;
+    padding: 0.625rem 3rem;
+    gap: 0.625rem;
+    border-radius: 0.5rem;
+    background: transparent;
+    font-weight: 500;
+    line-height: 100%;
+    font-size: 1rem;
+    letter-spacing: 4%;
+    color: #14F195;
+    margin: 1rem 0;
+}
+
+.ft_cards_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+.ft_cards {
+    border-radius: 0.5rem;
+    border: 1px solid #4D4D4D80;
+}
+
+.ftImg {
+    width: 21.25rem;
+    height: 21.25rem;
+}
+
+.ft_text {
+    padding: 0.75rem;
+    gap: 0.125rem;
+}
+
+.ft_title {
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 2.5rem;
+}
+
+.ft_desc {
+    font-weight: 500;
+    font-size: 1.25rem;
+}
+
+@media (max-width: 400px) {
+    .ft_cards {
+        width: 80%;
+    }
+
+    .ftImg {
+        width: 100%;
+    }
+}
