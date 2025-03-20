@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { toast } from "react-toastify";
-import "./WaitlistPopup.css";
+import "./waitlistPopup.css";
 
 interface WaitlistPopupProps {
   isOpen: boolean;
