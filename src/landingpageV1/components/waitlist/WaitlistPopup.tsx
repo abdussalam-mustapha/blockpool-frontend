@@ -41,18 +41,32 @@ const WaitlistPopup = ({ isOpen, onClose }: WaitlistPopupProps) => {
     }
   }, [isOpen]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      const response = await fetch('https://blockpool-backend-2.onrender.com/api/waitlist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email }),
+      });
+
+      if (response.ok) {
+        toast.success("You've been added to our waitlist. We'll be in touch soon!");
+        onClose(); // Close the popup after submission
+        setEmail("");
+        setName("");
+      } else {
+        throw new Error('Failed to add to waitlist');
+      }
+    } catch (error) {
+      toast.error("There was an error adding you to the waitlist.");
+    } finally {
       setIsSubmitting(false);
-      toast.success("You've been added to our waitlist. We'll be in touch soon!");
-      onClose(); // Close the popup after submission
-      setEmail("");
-      setName("");
-    }, 1500);
+    }
   };
 
   if (!isOpen) return null; // Do not render if not open
