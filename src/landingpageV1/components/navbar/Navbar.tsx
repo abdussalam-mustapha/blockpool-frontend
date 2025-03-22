@@ -1,5 +1,5 @@
 import "./navbar.css"
-import NavIcon from "../../assets/icons/NavIcon.jpg"
+import NavIcon from "../../assets/icons/NavIcon.png"
 import CaretDownIcon from "../../assets/icons/CaretDownIcon"
 import { useState, useEffect, useRef } from "react";
 import WaitlistPopup from "../waitlist/WaitlistPopup";
