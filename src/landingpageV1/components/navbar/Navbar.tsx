@@ -73,7 +73,7 @@ const Navbar = () => {
         {/* Desktop Get Started Button */}
         {!isMobileMenuOpen && (
           <div>
-            <button className="get_started_btn" onClick={openWaitlist}>Get Started</button>
+            <button className="get_started_btn" onClick={openWaitlist}>Join Waitlist</button>
           </div>
         )}
 
@@ -93,7 +93,7 @@ const Navbar = () => {
               <CaretDownIcon />
             </button>
             {/* Mobile Get Started Button */}
-            <button className="get_started_btn_mobile" onClick={openWaitlist}>Get Started</button>
+            <button className="get_started_btn_mobile" onClick={openWaitlist}>Join Waitlist</button>
           </div>
         )}
       </nav>
