@@ -34,7 +34,7 @@ const Hero = () => {
                 transactions and save money with Alpha's powerful tools.
               </p>
               <div className="hero_btn_wrapper">
-                <button className="btn_dark_green" onClick={openWaitlist}>Try it Now</button>
+                <button className="btn_dark_green" onClick={openWaitlist}>Join Waitlist</button>
                 <button className="btn_light_green">Download the extension</button>
               </div>
             </section>
