@@ -110,10 +110,11 @@ h2 {
     }
 }
 
-/* @media (max-width: 600px) {
+@media (max-width: 1024px) {
+
     .ft_cards {
-      width: 90%;
-      margin: auto;
+        margin: auto;
+        margin-top: 4rem;
     }
   }
-   */
+  

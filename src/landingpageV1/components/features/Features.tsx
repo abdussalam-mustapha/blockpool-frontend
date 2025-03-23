@@ -19,14 +19,14 @@ const Features = () => {
       <section className="ft_cards_wrapper swiper-container">
         <Swiper
           slidesPerView={3}
-          spaceBetween={3}
+          spaceBetween={20}
           pagination={{ clickable: true }}
           modules={[Pagination]}
           className="featuresSwiper"
           breakpoints={{
             1024: {
               slidesPerView: 3,
-              spaceBetween: 1,
+              spaceBetween: 20,
             },
             768: {
               slidesPerView: 2,
