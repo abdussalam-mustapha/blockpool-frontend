@@ -43,8 +43,8 @@ const WaitlistPopup = ({ isOpen, onClose }) => {
     }, [isOpen]);
     const handleSubmit = (e) => __awaiter(void 0, void 0, void 0, function* () {
         e.preventDefault();
-        setIsSubmitting(true);
         try {
+            setIsSubmitting(true);
             const response = yield fetch('https://blockpool-backend-2.onrender.com/api/waitlist', {
                 method: 'POST',
                 headers: {

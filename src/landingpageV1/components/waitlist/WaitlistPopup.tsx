@@ -43,9 +43,11 @@ const WaitlistPopup = ({ isOpen, onClose }: WaitlistPopupProps) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
     
     try {
+
+      setIsSubmitting(true);
+
       const response = await fetch('https://blockpool-backend-2.onrender.com/api/waitlist', {
         method: 'POST',
         headers: {
