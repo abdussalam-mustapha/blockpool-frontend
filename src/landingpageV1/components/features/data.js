@@ -7,38 +7,38 @@ import transaction_monitoring from "../../assets/images/transaction_monitoring.p
 export const featuresData = [
     {
         id: 1,
-        ftImg: gas_predict,
-        ftText: "Fee Estimator",
-        ftDesc: "Predict transaction costs",
-    },
-    {
-        id: 2,
-        ftImg: Fee_comparison,
-        ftText: "Fee Comparison",
-        ftDesc: "Compare Solana with other blo...",
-    },
-    {
-        id: 3,
-        ftImg: Fee_history,
-        ftText: "Fee History",
-        ftDesc: "View past gas fee trends",
-    },
-    {
-        id: 4,
         ftImg: API_integration,
         ftText: "API integration",
         ftDesc: "Allows seamless developer int...",
     },
     {
-        id: 5,
+        id: 2,
         ftImg: token_swap,
         ftText: "Token Swap",
         ftDesc: "Conveniently swap your tokens",
     },
     {
-        id: 6,
+        id: 3,
         ftImg: transaction_monitoring,
         ftText: "Transaction Monitoring",
         ftDesc: "Monitor all your transactions",
+    },
+    {
+        id: 4,
+        ftImg: gas_predict,
+        ftText: "Fee Estimator",
+        ftDesc: "Predict transaction costs",
+    },
+    {
+        id: 5,
+        ftImg: Fee_comparison,
+        ftText: "Fee Comparison",
+        ftDesc: "Check gas fee analytics",
+    },
+    {
+        id: 6,
+        ftImg: Fee_history,
+        ftText: "Transaction History",
+        ftDesc: "View past transactions",
     },
 ];
