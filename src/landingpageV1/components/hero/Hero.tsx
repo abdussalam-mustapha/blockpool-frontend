@@ -29,9 +29,7 @@ const Hero = () => {
                 Unlock <span>Solana's</span> Full Potential with Blockpool
               </p>
               <p className="hero_text">
-                Get real-time insights, historical trends, and actionable tips to
-                save on Solana gas fees. This helps you to optimize your Solana
-                transactions and save money with Alpha's powerful tools.
+              Unlock APIs for web auth, blockchain data, and on-chain analytics—with engaging training for Solana developers—and enjoy effortless transaction tracking with Blockpool’s cool features
               </p>
               <div className="hero_btn_wrapper">
                 <button className="btn_dark_green" onClick={openWaitlist}>Join Waitlist</button>
