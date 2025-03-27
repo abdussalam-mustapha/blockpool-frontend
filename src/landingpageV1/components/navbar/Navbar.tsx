@@ -70,6 +70,9 @@ const Navbar = () => {
           ☰
         </div>
 
+         {/* Overlay */}
+         <div className={`overlay ${isMobileMenuOpen ? 'open' : ''}`} onClick={toggleMobileMenu}></div>
+
         {/* Desktop Get Started Button */}
         {!isMobileMenuOpen && (
           <div>
@@ -77,8 +80,7 @@ const Navbar = () => {
           </div>
         )}
 
-        {/* Overlay */}
-        <div className={`overlay ${isMobileMenuOpen ? 'open' : ''}`} onClick={toggleMobileMenu}></div>
+ 
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
