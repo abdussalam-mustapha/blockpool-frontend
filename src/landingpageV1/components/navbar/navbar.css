@@ -56,6 +56,7 @@ span {
     position: absolute;
     right: 1rem;
     top: 1.5rem;
+    z-index: 1001;
 }
 
 @media (max-width: 768px) {
@@ -67,17 +68,37 @@ span {
         display: block;
     }
 
+    .mobile_menu.hidden {
+        display: none;
+    }
+
     .nav_icon {
         right: 3rem;
         position: relative;
     }
 
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+        z-index: 999;
+    }
+
+    .overlay.open {
+        display: block;
+    }
+
     .mobile_nav_items {
         display: flex;
         flex-direction: column;
-        background: rgba(77, 77, 77, 0.9);
+        background: rgba(77, 77, 77, 0.95);
         position: fixed;
-        top: 0.5rem;
+        top: 0;
         left: 0;
         width: 50%;
         height: 100%;
@@ -91,6 +112,24 @@ span {
         transform: translateX(0);
     }
 
+    /* .mobile_btn_wrappers {
+        margin-top: 6rem;
+        width: 100%;
+        background-color: red;
+    } */
+
+    .close_icon {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        font-size: 1.5rem;
+        color: white;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 0.5rem;
+    }
+
     .get_started_btn_mobile {
         background: linear-gradient(180deg, #14F195 0%, #0C8B56 100%);
         padding: 1rem 0.5rem;
@@ -99,10 +138,11 @@ span {
         color: #FFFFFF;
         line-height: 100%;
         border-radius: 0.25rem;
+        width: 100%;
     }
 
     .mobile_btn {
-        margin: 1rem 0;
+        margin: 3rem 0;
         background: none;
         padding: 1rem 0.5rem;
         display: flex;
@@ -116,6 +156,7 @@ span {
         border-radius: 0.25rem;
         border: none;
         transition: background 0.3s ease;
+        width: 100%;
     }
 
     .mobile_nav_items button:hover {
@@ -131,6 +172,4 @@ span {
     .get_started_btn {
         display: none;
     }
-
-  
 }

@@ -26,6 +26,9 @@ const Features = () => {
                             }, whileFocus: {
                                 scale: 1.05,
                                 boxShadow: "0px 0px 20px rgba(20, 241, 149, 0.8)"
-                            }, children: [_jsx(motion.div, { className: "light-beam", initial: { opacity: 0, scale: 0.8 }, whileHover: { opacity: 1, scale: 1.1, rotate: 360 }, whileFocus: { opacity: 1, scale: 1.1, rotate: 360 }, transition: { duration: 1, ease: "linear" } }), _jsx("img", { src: data.ftImg, alt: "", className: "ftImg" }), _jsxs("div", { className: "ft_text", children: [_jsx("p", { className: "ft_title", children: data.ftText }), _jsx("p", { className: "ft_desc", children: data.ftDesc })] })] }) }, index))) }) })] }));
+                            }, whileTap: {
+                                scale: 0.95,
+                                boxShadow: "0px 0px 30px rgba(20, 241, 149, 0.9)"
+                            }, onClick: () => { }, children: [_jsx(motion.div, { className: "light-beam", initial: { opacity: 0, scale: 0.8 }, whileHover: { opacity: 1, scale: 1.1, rotate: 360 }, whileFocus: { opacity: 1, scale: 1.1, rotate: 360 }, whileTap: { opacity: 1, scale: 1.2, rotate: 180 }, transition: { duration: 0.5, ease: "easeOut" } }), _jsx("img", { src: data.ftImg, alt: "", className: "ftImg" }), _jsxs("div", { className: "ft_text", children: [_jsx("p", { className: "ft_title", children: data.ftText }), _jsx("p", { className: "ft_desc", children: data.ftDesc })] })] }) }, index))) }) })] }));
 };
 export default Features;

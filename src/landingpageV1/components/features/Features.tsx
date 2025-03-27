@@ -51,14 +51,20 @@ const Features = () => {
                 whileFocus={{ 
                   scale: 1.05, 
                   boxShadow: "0px 0px 20px rgba(20, 241, 149, 0.8)" 
-                }} 
+                }}
+                whileTap={{ 
+                  scale: 0.95,
+                  boxShadow: "0px 0px 30px rgba(20, 241, 149, 0.9)"
+                }}
+                onClick={() => {}}
               >
                 <motion.div
                   className="light-beam"
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileHover={{ opacity: 1, scale: 1.1, rotate: 360 }}
                   whileFocus={{ opacity: 1, scale: 1.1, rotate: 360 }}
-                  transition={{ duration: 1, ease: "linear" }}
+                  whileTap={{ opacity: 1, scale: 1.2, rotate: 180 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
                 />
                 <img src={data.ftImg} alt="" className="ftImg" />
                 <div className="ft_text">

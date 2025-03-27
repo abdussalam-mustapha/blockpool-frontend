@@ -66,7 +66,7 @@ const Navbar = () => {
         </div>
 
         {/* Hamburger Menu for Mobile */}
-        <div className="mobile_menu" onClick={toggleMobileMenu}>
+        <div className={`mobile_menu ${isMobileMenuOpen ? 'hidden' : ''}`} onClick={toggleMobileMenu}>
           ☰
         </div>
 
@@ -77,9 +77,14 @@ const Navbar = () => {
           </div>
         )}
 
+        {/* Overlay */}
+        <div className={`overlay ${isMobileMenuOpen ? 'open' : ''}`} onClick={toggleMobileMenu}></div>
+
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className={`mobile_nav_items ${isMobileMenuOpen ? 'open' : ''}`} ref={mobileNavRef}>
+            <button className="close_icon" onClick={toggleMobileMenu}>✕</button>
+            
             <button className="mobile_btn">
               <span>Products</span>
               <CaretDownIcon />
