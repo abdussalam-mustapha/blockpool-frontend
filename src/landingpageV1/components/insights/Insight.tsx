@@ -29,7 +29,7 @@ const Insight = () => {
             </div>
             <div>
                 <p className="dt_col_title">Transaction Optimization</p>
-                <p className="insight_desc">Learn how to reduce gas fees</p>
+                <p className="insight_desc">monitor transactions efficiently</p>
                 <button>Gas Optimization</button>
             </div>
         </div>
