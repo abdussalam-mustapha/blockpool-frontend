@@ -1,129 +1,248 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Select, Input, Card } from 'antd';
-import { SwapOutlined } from '@ant-design/icons';
+import { Button, Select, Input, Card, Spin, Typography, Tooltip } from 'antd';
+import { SwapOutlined, InfoCircleOutlined, LoadingOutlined } from '@ant-design/icons';
 import './App.scss';
+import { useTokens } from './data/tokenStore';
+import { Token } from './utils/jupiterApi';
+import { calculateSwapOutput, executeSwap } from './utils/swapService';
 
 const { Option } = Select;
-
-interface Token {
-  symbol: string;
-  name: string;
-  price: number;
-}
-
-const tokens: Token[] = [
-  { symbol: 'ETH', name: 'Ethereum', price: 2850.75 },
-  { symbol: 'BTC', name: 'Bitcoin', price: 43250.80 },
-  { symbol: 'SOL', name: 'Solana', price: 102.45 },
-  { symbol: 'USDT', name: 'Tether', price: 1.00 }
-];
+const { Text } = Typography;
 
 const App: React.FC = () => {
-  const [fromToken, setFromToken] = useState<string>('');
-  const [toToken, setToToken] = useState<string>('');
+  // Get tokens from Jupiter API
+  const { tokens, popularTokens, loading: tokensLoading, getTokenByAddress } = useTokens();
+
+  // State for swap form
+  const [fromTokenAddress, setFromTokenAddress] = useState<string>('');
+  const [toTokenAddress, setToTokenAddress] = useState<string>('');
   const [fromAmount, setFromAmount] = useState<string>('0');
   const [toAmount, setToAmount] = useState<string>('0');
+  const [calculating, setCalculating] = useState<boolean>(false);
+  const [swapping, setSwapping] = useState<boolean>(false);
+  const [priceImpact, setPriceImpact] = useState<number>(0);
+  const [quoteData, setQuoteData] = useState<any>(null);
+  const [error, setError] = useState<string | null>(null);
 
-  const calculateToAmount = (amount: string, from: string, to: string) => {
-    const fromTokenData = tokens.find(t => t.symbol === from);
-    const toTokenData = tokens.find(t => t.symbol === to);
-    
-    if (fromTokenData && toTokenData && amount) {
-      const fromValue = parseFloat(amount) * fromTokenData.price;
-      const toValue = fromValue / toTokenData.price;
-      setToAmount(toValue.toFixed(6));
-    }
-  };
+  // Get token objects
+  const fromToken = fromTokenAddress ? getTokenByAddress(fromTokenAddress) : null;
+  const toToken = toTokenAddress ? getTokenByAddress(toTokenAddress) : null;
 
+  // Calculate output amount when input changes
   useEffect(() => {
-    if (fromToken && toToken && fromAmount) {
-      calculateToAmount(fromAmount, fromToken, toToken);
-    }
+    const calculateOutput = async () => {
+      if (fromToken && toToken && fromAmount && parseFloat(fromAmount) > 0) {
+        try {
+          setCalculating(true);
+          setError(null);
+          
+          const result = await calculateSwapOutput(
+            parseFloat(fromAmount),
+            fromToken.decimals,
+            fromToken.address,
+            toToken.address,
+            toToken.decimals
+          );
+          
+          setToAmount(result.outputAmount.toFixed(6));
+          setPriceImpact(result.priceImpactPct);
+          setQuoteData(result.quoteResponse);
+        } catch (err) {
+          console.error('Error calculating swap:', err);
+          setError('Failed to calculate swap. Please try again.');
+          setToAmount('0');
+          setPriceImpact(0);
+          setQuoteData(null);
+        } finally {
+          setCalculating(false);
+        }
+      } else {
+        setToAmount('0');
+        setPriceImpact(0);
+        setQuoteData(null);
+      }
+    };
+
+    calculateOutput();
   }, [fromToken, toToken, fromAmount]);
 
-  const handleSwap = () => {
-    // Implement swap logic here
-    console.log(`Swapping ${fromAmount} ${fromToken} to ${toAmount} ${toToken}`);
+  // Handle swap execution
+  const handleSwap = async () => {
+    if (!fromToken || !toToken || !quoteData) return;
+    
+    try {
+      setSwapping(true);
+      setError(null);
+      
+      await executeSwap(
+        quoteData,
+        fromToken.symbol,
+        toToken.symbol
+      );
+      
+      // Reset form after successful swap
+      setFromAmount('0');
+      setToAmount('0');
+      setPriceImpact(0);
+      setQuoteData(null);
+      
+    } catch (err) {
+      console.error('Error executing swap:', err);
+      setError('Failed to execute swap. Please try again.');
+    } finally {
+      setSwapping(false);
+    }
   };
 
-  const getUSDValue = (amount: string, token: string): string => {
-    const tokenData = tokens.find(t => t.symbol === token);
-    if (tokenData && amount) {
-      const usdValue = parseFloat(amount) * tokenData.price;
-      return `$${usdValue.toFixed(2)}`;
-    }
-    return '$0.00';
+  // Price impact color based on severity
+  const getPriceImpactColor = () => {
+    if (priceImpact < 1) return 'green';
+    if (priceImpact < 3) return 'orange';
+    return 'red';
   };
+
+  // Render token option
+  const renderTokenOption = (token: Token) => (
+    <Option key={token.address} value={token.address}>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        {token.logoURI && (
+          <img 
+            src={token.logoURI} 
+            alt={token.symbol} 
+            style={{ width: 20, height: 20, marginRight: 8 }} 
+          />
+        )}
+        <span>{token.symbol}</span>
+      </div>
+    </Option>
+  );
 
   return (
     <div className="swap-container">
-      <Card className="swap-card">
-        <div className="token-input">
-          <div className="token-row">
-            <span>From</span>
-            <Select 
-              style={{ width: 120 }} 
-              value={fromToken} 
-              onChange={setFromToken}
-              placeholder="Select token"
+      <Card className="swap-card" title="Swap Tokens">
+        {tokensLoading ? (
+          <div className="loading-container">
+            <Spin indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />} />
+            <Text>Loading tokens...</Text>
+          </div>
+        ) : (
+          <>
+            <div className="token-input">
+              <div className="token-row">
+                <span>From</span>
+                <Select 
+                  style={{ width: 150 }} 
+                  value={fromTokenAddress} 
+                  onChange={setFromTokenAddress}
+                  placeholder="Select token"
+                  showSearch
+                  optionFilterProp="children"
+                  filterOption={(input, option) => 
+                    (option?.children as any)?.props?.children[1]?.props?.children
+                      .toLowerCase()
+                      .indexOf(input.toLowerCase()) >= 0
+                  }
+                >
+                  {tokens.map(renderTokenOption)}
+                </Select>
+              </div>
+              <div className="token-row">
+                <Input 
+                  placeholder="0.0" 
+                  value={fromAmount}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    if (value === '' || /^\d*\.?\d*$/.test(value)) {
+                      setFromAmount(value);
+                    }
+                  }}
+                  style={{ width: '100%' }}
+                  disabled={swapping}
+                />
+              </div>
+            </div>
+
+            <div className="swap-icon-container">
+              <SwapOutlined onClick={() => {
+                if (!swapping) {
+                  const tempFromToken = fromTokenAddress;
+                  setFromTokenAddress(toTokenAddress);
+                  setToTokenAddress(tempFromToken);
+                }
+              }} />
+            </div>
+
+            <div className="token-input">
+              <div className="token-row">
+                <span>To</span>
+                <Select 
+                  style={{ width: 150 }} 
+                  value={toTokenAddress} 
+                  onChange={setToTokenAddress}
+                  placeholder="Select token"
+                  showSearch
+                  optionFilterProp="children"
+                  filterOption={(input, option) => 
+                    (option?.children as any)?.props?.children[1]?.props?.children
+                      .toLowerCase()
+                      .indexOf(input.toLowerCase()) >= 0
+                  }
+                >
+                  {tokens.map(renderTokenOption)}
+                </Select>
+              </div>
+              <div className="token-row">
+                <Input 
+                  placeholder="0.0" 
+                  value={calculating ? 'Calculating...' : toAmount}
+                  disabled
+                  style={{ width: '100%' }}
+                />
+              </div>
+            </div>
+
+            {priceImpact > 0 && (
+              <div className="price-impact">
+                <Text>
+                  Price Impact: <span style={{ color: getPriceImpactColor() }}>{priceImpact.toFixed(2)}%</span>
+                  <Tooltip title="The difference between the market price and estimated price due to trade size.">
+                    <InfoCircleOutlined style={{ marginLeft: 5 }} />
+                  </Tooltip>
+                </Text>
+              </div>
+            )}
+
+            {error && (
+              <div className="error-message">
+                <Text type="danger">{error}</Text>
+              </div>
+            )}
+
+            <Button 
+              className="swap-button"
+              type="primary" 
+              onClick={handleSwap}
+              loading={swapping}
+              disabled={
+                !fromTokenAddress || 
+                !toTokenAddress || 
+                !fromAmount || 
+                fromAmount === '0' || 
+                calculating || 
+                swapping ||
+                priceImpact > 15 // Disable if price impact is too high
+              }
             >
-              {tokens.map(token => (
-                <Option key={token.symbol} value={token.symbol}>
-                  {token.symbol}
-                </Option>
-              ))}
-            </Select>
-          </div>
-          <div className="token-row">
-            <Input 
-              placeholder="0.0" 
-              value={fromAmount}
-              onChange={(e) => setFromAmount(e.target.value)}
-              style={{ width: '60%' }}
-            />
-            <div className="usd-value">{getUSDValue(fromAmount, fromToken)}</div>
-          </div>
-        </div>
+              {swapping ? 'Swapping...' : 'Swap'}
+            </Button>
 
-        <div className="swap-icon-container">
-          <SwapOutlined />
-        </div>
-
-        <div className="token-input">
-          <div className="token-row">
-            <span>To</span>
-            <Select 
-              style={{ width: 120 }} 
-              value={toToken} 
-              onChange={setToToken}
-              placeholder="Select token"
-            >
-              {tokens.map(token => (
-                <Option key={token.symbol} value={token.symbol}>
-                  {token.symbol}
-                </Option>
-              ))}
-            </Select>
-          </div>
-          <div className="token-row">
-            <Input 
-              placeholder="0.0" 
-              value={toAmount}
-              disabled
-              style={{ width: '60%' }}
-            />
-            <div className="usd-value">{getUSDValue(toAmount, toToken)}</div>
-          </div>
-        </div>
-
-        <Button 
-          className="swap-button"
-          type="primary" 
-          onClick={handleSwap}
-          disabled={!fromToken || !toToken || !fromAmount || fromAmount === '0'}
-        >
-          Swap
-        </Button>
+            {priceImpact > 15 && (
+              <div className="warning-message">
+                <Text type="danger">Price impact too high. Swap disabled.</Text>
+              </div>
+            )}
+          </>
+        )}
       </Card>
     </div>
   );
