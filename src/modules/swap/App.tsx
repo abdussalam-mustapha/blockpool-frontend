@@ -140,7 +140,10 @@ const App: React.FC = () => {
                 <Select 
                   style={{ width: 150 }} 
                   value={fromTokenAddress} 
-                  onChange={setFromTokenAddress}
+                  onChange={(newValue) => {
+                    console.log('From token selected (address):', newValue);
+                    setFromTokenAddress(newValue);
+                  }}
                   placeholder="Select token"
                   showSearch
                   optionFilterProp="children"
@@ -209,7 +212,10 @@ const App: React.FC = () => {
                 <Select 
                   style={{ width: 150 }} 
                   value={toTokenAddress} 
-                  onChange={setToTokenAddress}
+                  onChange={(newValue) => {
+                    console.log('To token selected (address):', newValue);
+                    setToTokenAddress(newValue);
+                  }}
                   placeholder="Select token"
                   showSearch
                   optionFilterProp="children"
