@@ -59,7 +59,11 @@ export const useTokens = () => {
           if (aIsCommon && !bIsCommon) return -1;
           if (!aIsCommon && bIsCommon) return 1;
           
-          return a.symbol.localeCompare(b.symbol);
+          // Safely handle potentially missing symbols
+          const symbolA = a.symbol || '';
+          const symbolB = b.symbol || '';
+          
+          return symbolA.localeCompare(symbolB);
         });
         
         console.log('Sorted tokens ready:', sortedTokens.length);
