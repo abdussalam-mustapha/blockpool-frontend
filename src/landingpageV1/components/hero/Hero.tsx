@@ -3,9 +3,15 @@ import solana_img from "../../assets/images/sol_image.png"
 import "./hero.css";
 import { useState } from "react";
 import WaitlistPopup from "../waitlist/WaitlistPopup";
+import { useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for styling
+import 'react-toastify/dist/ReactToastify.css';
+
+// For debugging
+const DEBUG = true;
+
 const Hero = () => {
+  const navigate = useNavigate();
   const [isWaitlistOpen, setWaitlistOpen] = useState(false);
 
   const openWaitlist = () => {
@@ -15,6 +21,11 @@ const Hero = () => {
   const closeWaitlist = () => {
     console.log("Closing waitlist popup"); // Debugging log
     setWaitlistOpen(false);
+  };
+
+  const handleTryNow = () => {
+    if (DEBUG) console.log('Navigating to /swap');
+    navigate('/swap', { replace: true });
   };
 
   return (
@@ -33,7 +44,7 @@ const Hero = () => {
               </p>
               <div className="hero_btn_wrapper">
                 <button className="btn_dark_green" onClick={openWaitlist}>Join Waitlist</button>
-                <button className="btn_light_green">Download the extension</button>
+                <button className="btn_light_green" onClick={handleTryNow}>Try Now</button>
               </div>
             </section>
             <section>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Select, Input, Card } from 'antd';
 import { SwapOutlined } from '@ant-design/icons';
-import './App.scss';
+import './Swap.scss';
 
 const { Option } = Select;
 
@@ -18,7 +18,7 @@ const tokens: Token[] = [
   { symbol: 'USDT', name: 'Tether', price: 1.00 }
 ];
 
-const App: React.FC = () => {
+const SwapPage: React.FC = () => {
   const [fromToken, setFromToken] = useState<string>('');
   const [toToken, setToToken] = useState<string>('');
   const [fromAmount, setFromAmount] = useState<string>('0');
@@ -129,4 +129,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default SwapPage;

@@ -10,9 +10,9 @@ const CaretDownIcon = () => {
       <path
         d="M13.5 1.00005C13.5 1.00005 9.0811 7 7.5 7C5.9188 7 1.5 1 1.5 1"
         stroke="white"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

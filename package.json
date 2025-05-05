@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ant-design/icons": "^6.0.0",
     "@project-serum/serum": "^0.13.65",
     "@radix-ui/react-label": "^2.1.2",
     "@radix-ui/react-slot": "^1.1.2",
@@ -19,6 +20,7 @@
     "@solana/web3.js": "^1.98.0",
     "@tailwindcss/vite": "^4.0.14",
     "@tanstack/react-query": "^5.69.0",
+    "antd": "^5.24.9",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.5.0",
@@ -26,6 +28,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.2",
+    "react-redux": "^9.2.0",
     "react-router-dom": "^7.3.0",
     "react-toastify": "^11.0.5",
     "recharts": "^2.15.1",
