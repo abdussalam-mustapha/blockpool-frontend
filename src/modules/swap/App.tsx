@@ -140,9 +140,14 @@ const App: React.FC = () => {
                 <Select 
                   style={{ width: 150 }} 
                   value={fromTokenAddress} 
-                  onChange={(newValue) => {
-                    console.log('From token selected (address):', newValue);
-                    setFromTokenAddress(newValue);
+                  onChange={(newValue, option) => {
+                    console.log('From token onChange - Value:', newValue, 'Option:', option);
+                    // Try getting the value from the option object if newValue is null
+                    const selectedAddress = newValue ?? (option as any)?.value ?? null;
+                    console.log('From token selected address (determined):', selectedAddress);
+                    if (selectedAddress) {
+                      setFromTokenAddress(selectedAddress);
+                    }
                   }}
                   placeholder="Select token"
                   showSearch
@@ -162,21 +167,7 @@ const App: React.FC = () => {
                   }}
                 >
                   {tokens.map(token => (
-                    <Option key={token.address} value={token.address}>
-                      <div style={{ display: 'flex', alignItems: 'center' }}>
-                        {token.logoURI && (
-                          <img 
-                            src={token.logoURI} 
-                            alt={token.symbol} 
-                            style={{ width: 20, height: 20, marginRight: 8 }} 
-                            onError={(e) => {
-                              (e.target as HTMLImageElement).style.display = 'none';
-                            }}
-                          />
-                        )}
-                        <span>{token.symbol}</span>
-                      </div>
-                    </Option>
+                    renderTokenOption(token)
                   ))}
                 </Select>
               </div>
@@ -212,9 +203,14 @@ const App: React.FC = () => {
                 <Select 
                   style={{ width: 150 }} 
                   value={toTokenAddress} 
-                  onChange={(newValue) => {
-                    console.log('To token selected (address):', newValue);
-                    setToTokenAddress(newValue);
+                  onChange={(newValue, option) => {
+                    console.log('To token onChange - Value:', newValue, 'Option:', option);
+                    // Try getting the value from the option object if newValue is null
+                    const selectedAddress = newValue ?? (option as any)?.value ?? null;
+                    console.log('To token selected address (determined):', selectedAddress);
+                    if (selectedAddress) {
+                      setToTokenAddress(selectedAddress);
+                    }
                   }}
                   placeholder="Select token"
                   showSearch
@@ -234,21 +230,7 @@ const App: React.FC = () => {
                   }}
                 >
                   {tokens.map(token => (
-                    <Option key={token.address} value={token.address}>
-                      <div style={{ display: 'flex', alignItems: 'center' }}>
-                        {token.logoURI && (
-                          <img 
-                            src={token.logoURI} 
-                            alt={token.symbol} 
-                            style={{ width: 20, height: 20, marginRight: 8 }} 
-                            onError={(e) => {
-                              (e.target as HTMLImageElement).style.display = 'none';
-                            }}
-                          />
-                        )}
-                        <span>{token.symbol}</span>
-                      </div>
-                    </Option>
+                    renderTokenOption(token)
                   ))}
                 </Select>
               </div>
