@@ -102,20 +102,27 @@ const App: React.FC = () => {
   };
 
   // Render token option
-  const renderTokenOption = (token: Token) => (
-    <Option key={token.address} value={token.address}>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        {token.logoURI && (
-          <img 
-            src={token.logoURI} 
-            alt={token.symbol} 
-            style={{ width: 20, height: 20, marginRight: 8 }} 
-          />
-        )}
-        <span>{token.symbol}</span>
-      </div>
-    </Option>
-  );
+  const renderTokenOption = (token: Token) => {
+    console.log('Rendering token option:', token.symbol);
+    return (
+      <Option key={token.address} value={token.address}>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          {token.logoURI && (
+            <img 
+              src={token.logoURI} 
+              alt={token.symbol} 
+              style={{ width: 20, height: 20, marginRight: 8 }} 
+              onError={(e) => {
+                // Hide the image if it fails to load
+                (e.target as HTMLImageElement).style.display = 'none';
+              }}
+            />
+          )}
+          <span>{token.symbol}</span>
+        </div>
+      </Option>
+    );
+  };
 
   return (
     <div className="swap-container">
@@ -137,13 +144,37 @@ const App: React.FC = () => {
                   placeholder="Select token"
                   showSearch
                   optionFilterProp="children"
-                  filterOption={(input, option) => 
-                    (option?.children as any)?.props?.children[1]?.props?.children
-                      .toLowerCase()
-                      .indexOf(input.toLowerCase()) >= 0
-                  }
+                  filterOption={(input, option) => {
+                    // Simple string matching for search
+                    const optionValue = option?.value?.toString() || '';
+                    const token = tokens.find(t => t.address === optionValue);
+                    return token ? 
+                      token.symbol.toLowerCase().indexOf(input.toLowerCase()) >= 0 :
+                      false;
+                  }}
+                  onDropdownVisibleChange={(open) => {
+                    if (open) {
+                      console.log('Dropdown opened, tokens available:', tokens.length);
+                    }
+                  }}
                 >
-                  {tokens.map(renderTokenOption)}
+                  {tokens.map(token => (
+                    <Option key={token.address} value={token.address}>
+                      <div style={{ display: 'flex', alignItems: 'center' }}>
+                        {token.logoURI && (
+                          <img 
+                            src={token.logoURI} 
+                            alt={token.symbol} 
+                            style={{ width: 20, height: 20, marginRight: 8 }} 
+                            onError={(e) => {
+                              (e.target as HTMLImageElement).style.display = 'none';
+                            }}
+                          />
+                        )}
+                        <span>{token.symbol}</span>
+                      </div>
+                    </Option>
+                  ))}
                 </Select>
               </div>
               <div className="token-row">
@@ -182,13 +213,37 @@ const App: React.FC = () => {
                   placeholder="Select token"
                   showSearch
                   optionFilterProp="children"
-                  filterOption={(input, option) => 
-                    (option?.children as any)?.props?.children[1]?.props?.children
-                      .toLowerCase()
-                      .indexOf(input.toLowerCase()) >= 0
-                  }
+                  filterOption={(input, option) => {
+                    // Simple string matching for search
+                    const optionValue = option?.value?.toString() || '';
+                    const token = tokens.find(t => t.address === optionValue);
+                    return token ? 
+                      token.symbol.toLowerCase().indexOf(input.toLowerCase()) >= 0 :
+                      false;
+                  }}
+                  onDropdownVisibleChange={(open) => {
+                    if (open) {
+                      console.log('To token dropdown opened, tokens available:', tokens.length);
+                    }
+                  }}
                 >
-                  {tokens.map(renderTokenOption)}
+                  {tokens.map(token => (
+                    <Option key={token.address} value={token.address}>
+                      <div style={{ display: 'flex', alignItems: 'center' }}>
+                        {token.logoURI && (
+                          <img 
+                            src={token.logoURI} 
+                            alt={token.symbol} 
+                            style={{ width: 20, height: 20, marginRight: 8 }} 
+                            onError={(e) => {
+                              (e.target as HTMLImageElement).style.display = 'none';
+                            }}
+                          />
+                        )}
+                        <span>{token.symbol}</span>
+                      </div>
+                    </Option>
+                  ))}
                 </Select>
               </div>
               <div className="token-row">

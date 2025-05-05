@@ -31,8 +31,25 @@ export const useTokens = () => {
   useEffect(() => {
     const loadTokens = async () => {
       try {
+        console.log('Starting to fetch tokens...');
         setLoading(true);
         const fetchedTokens = await fetchTokens();
+        console.log('Tokens fetched:', fetchedTokens ? fetchedTokens.length : 0, 'tokens');
+        
+        if (!fetchedTokens || fetchedTokens.length === 0) {
+          console.error('No tokens fetched from Jupiter API');
+          // Add fallback tokens if API fails
+          const fallbackTokens: Token[] = [
+            { symbol: 'SOL', name: 'Solana', address: 'So11111111111111111111111111111111111111112', decimals: 9 },
+            { symbol: 'USDC', name: 'USD Coin', address: 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v', decimals: 6 },
+            { symbol: 'USDT', name: 'Tether', address: 'Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB', decimals: 6 },
+          ];
+          console.log('Using fallback tokens');
+          setTokens(fallbackTokens);
+          setPopularTokens(fallbackTokens);
+          setLoading(false);
+          return;
+        }
         
         // Sort tokens by priority (common tokens first) and then alphabetically
         const sortedTokens = [...fetchedTokens].sort((a, b) => {
@@ -45,18 +62,31 @@ export const useTokens = () => {
           return a.symbol.localeCompare(b.symbol);
         });
         
+        console.log('Sorted tokens ready:', sortedTokens.length);
         setTokens(sortedTokens);
         
         // Set popular tokens
         const popular = fetchedTokens.filter(token => 
           COMMON_TOKENS.includes(token.address)
         );
+        console.log('Popular tokens found:', popular.length);
         setPopularTokens(popular);
         
         setLoading(false);
       } catch (err) {
         console.error('Error loading tokens:', err);
         setError('Failed to load tokens');
+        
+        // Add fallback tokens if API fails
+        const fallbackTokens: Token[] = [
+          { symbol: 'SOL', name: 'Solana', address: 'So11111111111111111111111111111111111111112', decimals: 9 },
+          { symbol: 'USDC', name: 'USD Coin', address: 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v', decimals: 6 },
+          { symbol: 'USDT', name: 'Tether', address: 'Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB', decimals: 6 },
+        ];
+        console.log('Using fallback tokens due to error');
+        setTokens(fallbackTokens);
+        setPopularTokens(fallbackTokens);
+        
         setLoading(false);
       }
     };
