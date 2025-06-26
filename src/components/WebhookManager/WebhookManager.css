@@ -1,0 +1,438 @@
+/* WebhookManager.css */
+.webhook-manager {
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.webhook-header {
+  margin-bottom: 2rem;
+}
+
+.webhook-header h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.dark .webhook-header h2 {
+  color: #f0f0f0;
+}
+
+.webhook-header .description {
+  color: #666;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.dark .webhook-header .description {
+  color: #a0aec0;
+}
+
+.alert {
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.alert p {
+  margin: 0;
+}
+
+.alert button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 1rem;
+}
+
+.alert.error {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.dark .alert.error {
+  background-color: #471818;
+  color: #f87171;
+}
+
+.alert.success {
+  background-color: #d1fae5;
+  color: #047857;
+}
+
+.dark .alert.success {
+  background-color: #064e3b;
+  color: #6ee7b7;
+}
+
+.webhook-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 992px) {
+  .webhook-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.webhook-form-container,
+.webhooks-list-container {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+}
+
+.dark .webhook-form-container,
+.dark .webhooks-list-container {
+  background: #1a202c;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.webhook-form-container h3,
+.webhooks-list-container h3 {
+  font-size: 1.2rem;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.75rem;
+}
+
+.dark .webhook-form-container h3,
+.dark .webhooks-list-container h3 {
+  color: #f0f0f0;
+  border-bottom-color: #2d3748;
+}
+
+/* Form Styles */
+.webhook-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.dark .form-group label {
+  color: #f0f0f0;
+}
+
+.form-group input[type="text"],
+.form-group input[type="url"] {
+  padding: 0.75rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.dark .form-group input[type="text"],
+.dark .form-group input[type="url"] {
+  background-color: #2d3748;
+  border-color: #4a5568;
+  color: #f0f0f0;
+}
+
+.form-group small {
+  font-size: 0.85rem;
+  color: #718096;
+  margin-top: 0.25rem;
+}
+
+.dark .form-group small {
+  color: #a0aec0;
+}
+
+.transaction-types-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.75rem;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.checkbox-item label {
+  font-weight: normal;
+  margin-bottom: 0;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.address-input-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.address-input-group input {
+  flex: 1;
+}
+
+.add-address-btn {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.add-address-btn:disabled {
+  background-color: #a0aec0;
+  cursor: not-allowed;
+}
+
+.dark .add-address-btn:disabled {
+  background-color: #4a5568;
+}
+
+.address-list {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.address-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f7fafc;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  border-left: 3px solid #3b82f6;
+}
+
+.dark .address-item {
+  background-color: #2d3748;
+  border-left-color: #3b82f6;
+}
+
+.address-text {
+  font-family: monospace;
+  font-size: 0.9rem;
+  color: #4a5568;
+}
+
+.dark .address-text {
+  color: #e2e8f0;
+}
+
+.remove-address-btn {
+  background: none;
+  border: none;
+  color: #e53e3e;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.form-actions {
+  margin-top: 1rem;
+}
+
+.create-webhook-btn {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.create-webhook-btn:hover {
+  background-color: #2563eb;
+}
+
+.create-webhook-btn:disabled {
+  background-color: #a0aec0;
+  cursor: not-allowed;
+}
+
+.dark .create-webhook-btn:disabled {
+  background-color: #4a5568;
+}
+
+/* Webhooks List Styles */
+.webhooks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.no-webhooks {
+  text-align: center;
+  padding: 2rem;
+  color: #718096;
+  background-color: #f7fafc;
+  border-radius: 6px;
+}
+
+.dark .no-webhooks {
+  background-color: #2d3748;
+  color: #a0aec0;
+}
+
+.webhook-item {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.dark .webhook-item {
+  border-color: #4a5568;
+}
+
+.webhook-item-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f7fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.dark .webhook-item-header {
+  background-color: #2d3748;
+  border-bottom-color: #4a5568;
+}
+
+.status-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 0.75rem;
+}
+
+.status-indicator.active {
+  background-color: #10b981;
+}
+
+.status-indicator.inactive {
+  background-color: #e53e3e;
+}
+
+.status-indicator.pending {
+  background-color: #f59e0b;
+}
+
+.webhook-url {
+  flex: 1;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #4a5568;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dark .webhook-url {
+  color: #e2e8f0;
+}
+
+.delete-webhook-btn {
+  background-color: #e53e3e;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.delete-webhook-btn:hover {
+  background-color: #c53030;
+}
+
+.delete-webhook-btn:disabled {
+  background-color: #fc8181;
+  cursor: not-allowed;
+}
+
+.webhook-details {
+  padding: 1rem;
+}
+
+.detail-group {
+  margin-bottom: 1rem;
+}
+
+.detail-group:last-child {
+  margin-bottom: 0;
+}
+
+.detail-label {
+  font-weight: 500;
+  color: #4a5568;
+  margin-right: 0.5rem;
+}
+
+.dark .detail-label {
+  color: #a0aec0;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.tag {
+  background-color: #ebf5ff;
+  color: #3b82f6;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.dark .tag {
+  background-color: #1e3a5f;
+  color: #60a5fa;
+}
+
+.addresses {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.address {
+  font-family: monospace;
+  font-size: 0.9rem;
+  background-color: #f7fafc;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  color: #4a5568;
+}
+
+.dark .address {
+  background-color: #2d3748;
+  color: #e2e8f0;
+}

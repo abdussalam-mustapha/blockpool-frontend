@@ -24,8 +24,8 @@ const Hero = () => {
   };
 
   const handleTryNow = () => {
-    if (DEBUG) console.log('Navigating to /documentation');
-    navigate('/documentation', { replace: true });
+    if (DEBUG) console.log('Navigating to /dashboard');
+    navigate('/auth', { replace: true });
   };
 
   return (
