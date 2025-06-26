@@ -291,35 +291,35 @@
 }
 
 /* Content Sections */
-section {
+.documentation-page section {
   max-width: 64rem;
   margin: 0 auto 3rem;
   padding-bottom: 2rem;
   border-bottom: 1px solid #e5e7eb;
 }
 
-.dark section {
+.dark .documentation-page section {
   border-color: #374151;
 }
 
-section h2 {
+.documentation-page section h2 {
   font-size: 1.5rem;
   font-weight: 700;
   color: #111827;
   margin-bottom: 1rem;
 }
 
-.dark section h2 {
+.dark .documentation-page section h2 {
   color: #f9fafb;
 }
 
-section p {
+.documentation-page section p {
   color: #4b5563;
   line-height: 1.5;
   margin-bottom: 1rem;
 }
 
-.dark section p {
+.dark .documentation-page section p {
   color: #9ca3af;
 }
 
@@ -566,18 +566,18 @@ section p {
 }
 
 /* FAQ styles */
-.faq-item {
+.documentation-page .faq-item {
   margin-bottom: 1rem;
   border: 1px solid #e5e7eb;
   border-radius: 0.5rem;
   overflow: hidden;
 }
 
-.dark .faq-item {
+.dark .documentation-page .faq-item {
   border-color: #374151;
 }
 
-.faq-item h3 {
+.documentation-page .faq-item h3 {
   padding: 1rem;
   background-color: #f9fafb;
   border-bottom: 1px solid #e5e7eb;

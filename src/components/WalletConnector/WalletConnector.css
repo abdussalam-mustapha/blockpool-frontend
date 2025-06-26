@@ -96,7 +96,7 @@
   }
 }
 
-.dropdown-header {
+.wallet-connector .dropdown-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -104,22 +104,22 @@
   border-bottom: 1px solid #e5e7eb;
 }
 
-.dark .dropdown-header {
+.dark .wallet-connector .dropdown-header {
   border-bottom-color: #2d3748;
 }
 
-.dropdown-header h3 {
+.wallet-connector .dropdown-header h3 {
   margin: 0;
   font-size: 1.1rem;
   font-weight: 600;
   color: #333;
 }
 
-.dark .dropdown-header h3 {
+.dark .wallet-connector .dropdown-header h3 {
   color: #f0f0f0;
 }
 
-.close-button {
+.wallet-connector .dropdown-header .close-button {
   background: none;
   border: none;
   font-size: 1.5rem;
@@ -128,30 +128,28 @@
   cursor: pointer;
 }
 
-.dark .close-button {
+.dark .wallet-connector .dropdown-header .close-button {
   color: #a0aec0;
 }
 
-.demo-wallets, .custom-wallet {
-  padding: 1rem;
-}
-
-.demo-wallets {
+.wallet-connector .demo-wallets {
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
   border-bottom: 1px solid #e5e7eb;
 }
 
-.dark .demo-wallets {
+.dark .wallet-connector .demo-wallets {
   border-bottom-color: #2d3748;
 }
 
-h4 {
+.wallet-connector h4 {
   margin-top: 0;
   margin-bottom: 0.75rem;
   font-size: 0.9rem;
   color: #666;
 }
 
-.dark h4 {
+.dark .wallet-connector h4 {
   color: #a0aec0;
 }
 

@@ -235,13 +235,13 @@
 }
 
 /* Tabs */
-.tabs {
+.helius-demo-page .tabs {
   display: flex;
   border-bottom: 1px solid #e5e7eb;
   margin-bottom: 2rem;
 }
 
-.dark .tabs {
+.dark .helius-demo-page .tabs {
   border-bottom-color: #2d3748;
 }
 
