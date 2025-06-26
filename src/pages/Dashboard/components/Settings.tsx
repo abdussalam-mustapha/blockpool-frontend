@@ -13,128 +13,111 @@ const Settings: React.FC = () => {
   };
 
   return (
-    <div className="settings-container">
-      <h2>Project Settings</h2>
-      
-      <div className="settings-section">
-        <h3>General Settings</h3>
-        <div className="settings-form">
-          <div className="form-group">
-            <label htmlFor="projectName">Project Name</label>
-            <input 
-              type="text" 
-              id="projectName" 
-              value={projectName} 
-              onChange={(e) => setProjectName(e.target.value)}
-            />
+    <div>
+      <div className="dashboard-card">
+        <h2>General Settings</h2>
+        <div className="form-group">
+          <label htmlFor="projectName">Project Name</label>
+          <input 
+            type="text" 
+            id="projectName" 
+            className="form-input"
+            value={projectName} 
+            onChange={(e) => setProjectName(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="projectDescription">Project Description</label>
+          <textarea 
+            id="projectDescription" 
+            className="form-input"
+            value={projectDescription} 
+            onChange={(e) => setProjectDescription(e.target.value)}
+            rows={3}
+          />
+        </div>
+      </div>
+
+      <div className="dashboard-card">
+        <h2>Security Settings</h2>
+        <div className="form-group">
+          <label htmlFor="allowedDomains">Allowed Domains (comma separated)</label>
+          <input 
+            type="text" 
+            id="allowedDomains" 
+            className="form-input"
+            value={allowedDomains} 
+            onChange={(e) => setAllowedDomains(e.target.value)}
+          />
+        </div>
+        <div className="form-group toggle-group">
+          <label htmlFor="rateLimit">Enable Rate Limiting</label>
+          <div className="toggle-switch">
+            <input type="checkbox" id="rateLimit" defaultChecked />
+            <span className="toggle-slider"></span>
           </div>
-          
-          <div className="form-group">
-            <label htmlFor="projectDescription">Project Description</label>
-            <textarea 
-              id="projectDescription" 
-              value={projectDescription} 
-              onChange={(e) => setProjectDescription(e.target.value)}
-              rows={3}
-            />
+        </div>
+        <div className="form-group toggle-group">
+          <label htmlFor="ipRestriction">Enable IP Restrictions</label>
+          <div className="toggle-switch">
+            <input type="checkbox" id="ipRestriction" />
+            <span className="toggle-slider"></span>
           </div>
         </div>
       </div>
-      
-      <div className="settings-section">
-        <h3>Security Settings</h3>
-        <div className="settings-form">
-          <div className="form-group">
-            <label htmlFor="allowedDomains">Allowed Domains (comma separated)</label>
-            <input 
-              type="text" 
-              id="allowedDomains" 
-              value={allowedDomains} 
-              onChange={(e) => setAllowedDomains(e.target.value)}
-            />
-          </div>
-          
-          <div className="form-group">
-            <div className="toggle-group">
-              <label htmlFor="rateLimit">Enable Rate Limiting</label>
-              <div className="toggle-switch">
-                <input type="checkbox" id="rateLimit" defaultChecked />
-                <span className="toggle-slider"></span>
-              </div>
-            </div>
-          </div>
-          
-          <div className="form-group">
-            <div className="toggle-group">
-              <label htmlFor="ipRestriction">Enable IP Restrictions</label>
-              <div className="toggle-switch">
-                <input type="checkbox" id="ipRestriction" />
-                <span className="toggle-slider"></span>
-              </div>
-            </div>
+
+      <div className="dashboard-card">
+        <h2>Notification Settings</h2>
+        <div className="form-group">
+          <label htmlFor="notificationEmail">Email Notifications</label>
+          <input 
+            type="email" 
+            id="notificationEmail" 
+            className="form-input"
+            value={notificationEmail} 
+            onChange={(e) => setNotificationEmail(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="slackWebhook">Slack Webhook URL</label>
+          <input 
+            type="text" 
+            id="slackWebhook" 
+            className="form-input"
+            value={slackWebhook} 
+            onChange={(e) => setSlackWebhook(e.target.value)}
+          />
+        </div>
+        <div className="form-group toggle-group">
+          <label htmlFor="usageAlerts">Usage Alerts</label>
+          <div className="toggle-switch">
+            <input type="checkbox" id="usageAlerts" defaultChecked />
+            <span className="toggle-slider"></span>
           </div>
         </div>
       </div>
-      
-      <div className="settings-section">
-        <h3>Notification Settings</h3>
-        <div className="settings-form">
-          <div className="form-group">
-            <label htmlFor="notificationEmail">Email Notifications</label>
-            <input 
-              type="email" 
-              id="notificationEmail" 
-              value={notificationEmail} 
-              onChange={(e) => setNotificationEmail(e.target.value)}
-            />
+
+      <div className="dashboard-card danger-zone">
+        <h2>Danger Zone</h2>
+        <div className="danger-action">
+          <div>
+            <h3>Reset API Keys</h3>
+            <p>This will invalidate all existing API keys and generate new ones.</p>
           </div>
-          
-          <div className="form-group">
-            <label htmlFor="slackWebhook">Slack Webhook URL</label>
-            <input 
-              type="text" 
-              id="slackWebhook" 
-              value={slackWebhook} 
-              onChange={(e) => setSlackWebhook(e.target.value)}
-            />
+          <button className="btn btn-danger">Reset Keys</button>
+        </div>
+        <div className="danger-action">
+          <div>
+            <h3>Delete Project</h3>
+            <p>This action cannot be undone. This will permanently delete this project and all associated data.</p>
           </div>
-          
-          <div className="form-group">
-            <div className="toggle-group">
-              <label htmlFor="usageAlerts">Usage Alerts</label>
-              <div className="toggle-switch">
-                <input type="checkbox" id="usageAlerts" defaultChecked />
-                <span className="toggle-slider"></span>
-              </div>
-            </div>
-          </div>
+          <button className="btn btn-danger">Delete Project</button>
         </div>
       </div>
-      
-      <div className="settings-section">
-        <h3>Danger Zone</h3>
-        <div className="danger-zone">
-          <div className="danger-action">
-            <div className="danger-info">
-              <h4>Reset API Keys</h4>
-              <p>This will invalidate all existing API keys and generate new ones.</p>
-            </div>
-            <button className="danger-button">Reset Keys</button>
-          </div>
-          
-          <div className="danger-action">
-            <div className="danger-info">
-              <h4>Delete Project</h4>
-              <p>This action cannot be undone. This will permanently delete this project and all associated data.</p>
-            </div>
-            <button className="danger-button delete">Delete Project</button>
-          </div>
-        </div>
-      </div>
-      
+
       <div className="settings-actions">
-        <button className="cancel-button">Cancel</button>
-        <button className="save-button" onClick={handleSaveSettings}>Save Changes</button>
+        <button className="btn btn-secondary">Cancel</button>
+        <button className="btn btn-primary" onClick={handleSaveSettings}>Save Changes</button>
       </div>
     </div>
   );

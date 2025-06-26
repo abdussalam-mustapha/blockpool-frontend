@@ -2,44 +2,41 @@ import React from 'react';
 
 const Webhooks: React.FC = () => {
   return (
-    <div className="webhooks-container">
-      <h2>Webhooks</h2>
-      <div className="webhook-list">
-        <div className="webhook-item">
-          <div className="webhook-header">
-            <h3>Transaction Webhook</h3>
-            <span className="webhook-status active">Active</span>
-          </div>
-          <div className="webhook-url">https://example.com/webhook/transactions</div>
-          <div className="webhook-details">
-            <div className="webhook-type">Type: Transaction</div>
-            <div className="webhook-accounts">Accounts: 3</div>
-          </div>
-          <div className="webhook-actions">
-            <button className="edit-webhook-button">Edit</button>
-            <button className="delete-webhook-button">Delete</button>
-          </div>
+    <div>
+      <div className="dashboard-card webhook-item">
+        <div className="webhook-header">
+          <h2>Transaction Webhook</h2>
+          <span className="webhook-status active">Active</span>
         </div>
-        
-        <div className="webhook-item">
-          <div className="webhook-header">
-            <h3>NFT Webhook</h3>
-            <span className="webhook-status active">Active</span>
-          </div>
-          <div className="webhook-url">https://example.com/webhook/nfts</div>
-          <div className="webhook-details">
-            <div className="webhook-type">Type: NFT</div>
-            <div className="webhook-collections">Collections: 2</div>
-          </div>
-          <div className="webhook-actions">
-            <button className="edit-webhook-button">Edit</button>
-            <button className="delete-webhook-button">Delete</button>
-          </div>
+        <div className="webhook-url">https://example.com/webhook/transactions</div>
+        <div className="webhook-details">
+          <span>Type: Transaction</span>
+          <span>Accounts: 3</span>
+        </div>
+        <div className="webhook-actions">
+          <button className="btn btn-secondary">Edit</button>
+          <button className="btn btn-danger">Delete</button>
         </div>
       </div>
-      
-      <div className="create-webhook-container">
-        <button className="create-webhook-button">Create New Webhook</button>
+
+      <div className="dashboard-card webhook-item">
+        <div className="webhook-header">
+          <h2>NFT Webhook</h2>
+          <span className="webhook-status active">Active</span>
+        </div>
+        <div className="webhook-url">https://example.com/webhook/nfts</div>
+        <div className="webhook-details">
+          <span>Type: NFT</span>
+          <span>Collections: 2</span>
+        </div>
+        <div className="webhook-actions">
+          <button className="btn btn-secondary">Edit</button>
+          <button className="btn btn-danger">Delete</button>
+        </div>
+      </div>
+
+      <div style={{ marginTop: '2rem' }}>
+        <button className="btn btn-primary">Create New Webhook</button>
       </div>
     </div>
   );

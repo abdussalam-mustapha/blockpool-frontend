@@ -109,21 +109,25 @@ const RpcTesting: React.FC = () => {
   };
 
   return (
-    <div className="rpc-testing-container">
-      <div className="rpc-url-container">
+    <div className="dashboard-card">
+      <div className="form-group">
+        <label htmlFor="rpc-url">RPC URL</label>
         <input 
           type="text" 
+          id="rpc-url"
           value={rpcUrl} 
           onChange={(e) => setRpcUrl(e.target.value)}
-          className="rpc-url-input"
+          className="form-input"
         />
       </div>
       
-      <div className="rpc-method-container">
+      <div className="form-group">
+        <label htmlFor="rpc-method">Method</label>
         <select 
+          id="rpc-method"
           value={selectedMethod} 
           onChange={(e) => setSelectedMethod(e.target.value)}
-          className="rpc-method-select"
+          className="form-input"
         >
           {rpcMethods.map(method => (
             <option key={method} value={method}>{method}</option>
@@ -131,41 +135,43 @@ const RpcTesting: React.FC = () => {
         </select>
       </div>
       
-      <div className="rpc-params-container">
+            <div className="form-group">
         {(selectedMethod === 'getAccountInfo' || 
           selectedMethod === 'getBalance' || 
           selectedMethod === 'getAssetsByOwner') && (
-          <input 
-            type="text" 
-            value={accountAddress} 
-            onChange={(e) => setAccountAddress(e.target.value)}
-            className="rpc-param-input"
-            placeholder="Account Address"
-          />
+          <>
+            <label htmlFor="account-address">Account Address</label>
+            <input 
+              type="text" 
+              id="account-address"
+              value={accountAddress} 
+              onChange={(e) => setAccountAddress(e.target.value)}
+              className="form-input"
+              placeholder="Enter Account Address"
+            />
+          </>
         )}
       </div>
       
-      <div className="rpc-action-container">
+      <div className="form-group">
         <button 
           onClick={handleRunRpc} 
-          className="run-rpc-button"
+          className="btn btn-primary"
           disabled={isLoading}
         >
-          Run
+          {isLoading ? 'Running...' : 'Run'}
         </button>
       </div>
       
-      <div className="rpc-response-container">
+      <div className="response-container">
+        <h3>Response</h3>
         <div className="response-meta">
-          <span className="response-time">Time: {responseTime > 0 ? `${responseTime} ms` : '532.80 ms'}</span>
-          <span className="response-size">Size: {responseSize > 0 ? `${responseSize} bytes` : '229 bytes'}</span>
+          <span>Time: {responseTime > 0 ? `${responseTime} ms` : 'N/A'}</span>
+          <span>Size: {responseSize > 0 ? `${responseSize} bytes` : 'N/A'}</span>
         </div>
-        
-        <div className="response-content">
-          <pre className="response-json">
-            {rpcResponse ? JSON.stringify(rpcResponse, null, 2) : JSON.stringify(mockResponse, null, 2)}
-          </pre>
-        </div>
+        <pre className="response-json">
+          {rpcResponse ? JSON.stringify(rpcResponse, null, 2) : 'Click "Run" to see a response.'}
+        </pre>
       </div>
     </div>
   );

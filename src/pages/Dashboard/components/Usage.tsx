@@ -2,47 +2,45 @@ import React from 'react';
 
 const Usage: React.FC = () => {
   return (
-    <div className="usage-container">
-      <h2>API Usage</h2>
+    <div>
       <div className="usage-summary">
-        <div className="usage-card">
+        <div className="dashboard-card">
           <div className="usage-title">RPC Requests</div>
           <div className="usage-value">1,245,678</div>
           <div className="usage-period">This Month</div>
         </div>
         
-        <div className="usage-card">
+        <div className="dashboard-card">
           <div className="usage-title">Webhook Deliveries</div>
           <div className="usage-value">34,567</div>
           <div className="usage-period">This Month</div>
         </div>
         
-        <div className="usage-card">
+        <div className="dashboard-card">
           <div className="usage-title">Data Indexed</div>
           <div className="usage-value">2.4 GB</div>
           <div className="usage-period">This Month</div>
         </div>
       </div>
       
-      <div className="usage-chart">
-        <h3>Usage Over Time</h3>
+      <div className="dashboard-card usage-chart">
+        <h2>Usage Over Time</h2>
         <div className="chart-placeholder">
-          {/* Chart would be implemented with a library like Chart.js or Recharts */}
           <div className="mock-chart">
-            <div className="chart-bar" style={{ height: '60px' }}></div>
-            <div className="chart-bar" style={{ height: '80px' }}></div>
-            <div className="chart-bar" style={{ height: '120px' }}></div>
-            <div className="chart-bar" style={{ height: '90px' }}></div>
-            <div className="chart-bar" style={{ height: '150px' }}></div>
-            <div className="chart-bar" style={{ height: '180px' }}></div>
-            <div className="chart-bar" style={{ height: '130px' }}></div>
+            <div className="chart-bar" style={{ height: '60%' }}></div>
+            <div className="chart-bar" style={{ height: '80%' }}></div>
+            <div className="chart-bar" style={{ height: '70%' }}></div>
+            <div className="chart-bar" style={{ height: '90%' }}></div>
+            <div className="chart-bar" style={{ height: '75%' }}></div>
+            <div className="chart-bar" style={{ height: '85%' }}></div>
+            <div className="chart-bar" style={{ height: '65%' }}></div>
           </div>
         </div>
       </div>
       
-      <div className="usage-details">
-        <h3>Usage Breakdown</h3>
-        <table className="usage-table">
+      <div className="dashboard-card">
+        <h2>Usage Breakdown</h2>
+        <table className="table">
           <thead>
             <tr>
               <th>Endpoint</th>

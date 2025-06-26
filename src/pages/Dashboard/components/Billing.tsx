@@ -2,25 +2,24 @@ import React from 'react';
 
 const Billing: React.FC = () => {
   return (
-    <div className="billing-container">
-      <h2>Billing & Subscription</h2>
-      <div className="current-plan">
+    <div>
+      <div className="dashboard-card">
         <div className="plan-header">
-          <h3>Current Plan: Pro</h3>
+          <h2>Current Plan: Pro</h2>
           <span className="plan-status active">Active</span>
         </div>
         <div className="plan-details">
           <div className="plan-feature">
-            <span className="feature-name">Monthly Requests:</span>
-            <span className="feature-value">10,000,000</span>
+            <span>Monthly Requests:</span>
+            <span>10,000,000</span>
           </div>
           <div className="plan-feature">
-            <span className="feature-name">Webhooks:</span>
-            <span className="feature-value">Unlimited</span>
+            <span>Webhooks:</span>
+            <span>Unlimited</span>
           </div>
           <div className="plan-feature">
-            <span className="feature-name">Support:</span>
-            <span className="feature-value">Priority</span>
+            <span>Support:</span>
+            <span>Priority</span>
           </div>
           <div className="plan-price">
             <span className="price-value">$199</span>
@@ -28,13 +27,13 @@ const Billing: React.FC = () => {
           </div>
         </div>
         <div className="plan-actions">
-          <button className="upgrade-plan-button">Upgrade Plan</button>
+          <button className="btn btn-primary">Upgrade Plan</button>
         </div>
       </div>
-      
-      <div className="billing-history">
-        <h3>Billing History</h3>
-        <table className="billing-table">
+
+      <div className="dashboard-card">
+        <h2>Billing History</h2>
+        <table className="table">
           <thead>
             <tr>
               <th>Date</th>
@@ -50,41 +49,41 @@ const Billing: React.FC = () => {
               <td>Pro Plan - Monthly</td>
               <td>$199.00</td>
               <td><span className="payment-status paid">Paid</span></td>
-              <td><button className="download-invoice-button">Download</button></td>
+              <td><button className="btn btn-secondary">Download</button></td>
             </tr>
             <tr>
               <td>Apr 01, 2025</td>
               <td>Pro Plan - Monthly</td>
               <td>$199.00</td>
               <td><span className="payment-status paid">Paid</span></td>
-              <td><button className="download-invoice-button">Download</button></td>
+              <td><button className="btn btn-secondary">Download</button></td>
             </tr>
             <tr>
               <td>Mar 01, 2025</td>
               <td>Pro Plan - Monthly</td>
               <td>$199.00</td>
               <td><span className="payment-status paid">Paid</span></td>
-              <td><button className="download-invoice-button">Download</button></td>
+              <td><button className="btn btn-secondary">Download</button></td>
             </tr>
           </tbody>
         </table>
       </div>
-      
-      <div className="payment-methods">
-        <h3>Payment Methods</h3>
+
+      <div className="dashboard-card">
+        <h2>Payment Methods</h2>
         <div className="payment-method-item">
-          <div className="payment-method-icon">💳</div>
+          <span className="payment-method-icon">💳</span>
           <div className="payment-method-details">
-            <div className="payment-method-name">Visa ending in 4242</div>
-            <div className="payment-method-expiry">Expires 12/2026</div>
+            <span>Visa ending in 4242</span>
+            <span className="payment-method-expiry">Expires 12/2026</span>
           </div>
           <div className="payment-method-actions">
-            <button className="edit-payment-method-button">Edit</button>
-            <button className="remove-payment-method-button">Remove</button>
+            <button className="btn btn-secondary">Edit</button>
+            <button className="btn btn-danger">Remove</button>
           </div>
         </div>
         <div className="add-payment-method">
-          <button className="add-payment-method-button">Add Payment Method</button>
+          <button className="btn btn-primary">Add Payment Method</button>
         </div>
       </div>
     </div>
