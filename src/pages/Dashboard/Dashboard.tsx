@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import { useToast } from '../../context/ToastContext';
 import './Dashboard.css';
 import './components/DashboardComponents.css';
 
@@ -16,6 +18,9 @@ import Documentation from '../documentation/Documentation';
 const Dashboard: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>('rpc-testing');
   const [darkMode, setDarkMode] = useState<boolean>(true);
+  const [showProfileMenu, setShowProfileMenu] = useState<boolean>(false);
+  const { user, logout } = useAuth();
+  const { showToast } = useToast();
   const navigate = useNavigate();
   
   useEffect(() => {
@@ -43,6 +48,20 @@ const Dashboard: React.FC = () => {
     } else {
       document.documentElement.classList.remove('dark');
     }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      showToast('Successfully logged out', 'success');
+      navigate('/auth');
+    } catch (error) {
+      showToast('Error logging out', 'error');
+    }
+  };
+
+  const toggleProfileMenu = () => {
+    setShowProfileMenu(!showProfileMenu);
   };
 
   const renderContent = () => {
@@ -181,9 +200,32 @@ const Dashboard: React.FC = () => {
               {darkMode ? '☀️' : '🌙'}
             </button>
             <div className="user-profile">
-              <button className="profile-button">
+              <button className="profile-button" onClick={toggleProfileMenu}>
                 <span className="profile-icon">👤</span>
+                <span className="profile-email">{user?.email || 'User'}</span>
               </button>
+              {showProfileMenu && (
+                <div className="profile-dropdown">
+                  <div className="dropdown-header">
+                    <span className="dropdown-email">{user?.email}</span>
+                  </div>
+                  <ul className="dropdown-menu">
+                    <li>
+                      <button onClick={() => setActiveSection('settings')}>
+                        <i className="icon settings-icon"></i>
+                        Account Settings
+                      </button>
+                    </li>
+                    <li className="dropdown-divider"></li>
+                    <li>
+                      <button onClick={handleLogout} className="logout-button">
+                        <i className="icon logout-icon"></i>
+                        Logout
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
         </header>
